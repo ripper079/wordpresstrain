@@ -131,6 +131,9 @@ class DanielPlugin
         add_action("manage_computer_posts_columns", array($this, "rearrangeCPTComputerColumns"));
         //For custom CPT this is also neccessary for custom columns
         add_action("manage_computer_posts_custom_column", array($this, 'rearrangeCPTComputerCustomColumns'), 10, 2);
+        //Enambles filtering on custom columns
+        add_filter("manage_edit-computer_sortable_columns", array($this, 'filterCPTComputer'));
+
     }
 
     //
@@ -200,6 +203,13 @@ class DanielPlugin
             default:
                 echo "Not implemented yet dude!";
         }
+    }
+    public function filterCPTComputer($columns)
+    {
+        //The left side are the column id   and the right side gets appended to the url
+        $columns['the_value_for_name'] = "the_value_for_name";
+        $columns['the_value_for_email'] = "the_value_for_email";
+        return $columns;
     }
 
 
