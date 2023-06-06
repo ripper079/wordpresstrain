@@ -23,10 +23,12 @@
 define( 'DB_NAME', 'wp_genixdb' );
 
 /** Database username */
-define( 'DB_USER', 'god' );
+/** define( 'DB_USER', 'god' ); */
+define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'stROnG4evEr69' );
+/** define( 'DB_PASSWORD', 'stROnG4evEr69' ); */
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );

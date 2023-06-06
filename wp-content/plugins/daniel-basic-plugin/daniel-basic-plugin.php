@@ -24,6 +24,7 @@ Domain Path:  /languages
 */
 
 
+
 if (! defined('ABSPATH')) {
     echo "You should really not be here";
     die;
@@ -124,23 +125,28 @@ class DanielPlugin
     {
         //For Customer Detail
         //--------------------------------------
-        add_action("add_meta_boxes", array($this, 'registerCPTComputersMetaboxCustomer'));
+        add_action("add_meta_boxes", array($this, 'registerCPTComputersMetaboxes'));
         //Last two arguments are: priority(this case 10) and pass 2 argument
-        add_action("save_post", array($this, 'saveCPTComputerMetabox'), 10, 2);
+        add_action("save_post", array($this, 'saveCPTComputerMetaboxCust'), 10, 2);
         //Rearrange column backend(admin), the hook 'manage_{posttype}_posts_columns'
         add_action("manage_computer_posts_columns", array($this, "rearrangeCPTComputerColumns"));
         //For custom CPT this is also neccessary for custom columns
         add_action("manage_computer_posts_custom_column", array($this, 'rearrangeCPTComputerCustomColumns'), 10, 2);
         //Enambles filtering on custom columns
         add_filter("manage_edit-computer_sortable_columns", array($this, 'filterCPTComputer'));
+        //How saves the post
+        add_action("save_post", array($this, 'saveCPTComputerMetaboxAuthor') , 10, 2);
 
     }
 
     //
-    public function registerCPTComputersMetaboxCustomer()
+    public function registerCPTComputersMetaboxes()
     {
-        //add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "side", "high");
-        add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "normal", "high");
+        //add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "normal", "high");
+        add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "side", "high");
+
+
+        add_meta_box("comp-cpt-author", "Author (Metabox)", array($this, 'drawCPTComputersAuthorMetabox'), "Computer", "side", "high");
     }
     //The function responsible for drawing the layout
     public function drawCPTComputersCustomerMetabox($post)
@@ -159,10 +165,39 @@ class DanielPlugin
         <?php
     }
 
+    public function drawCPTComputersAuthorMetabox($post)
+    {
+        ?>
+    <div>
+        <label>Select Author</label>
+        <select name='ddauthor'>
+            <?php
+            $users = get_users(array(
+                "role" => "author"
+            ));
+
+            $saved_author_id = get_post_meta($post->ID, "author_id_movie", true);
+
+        foreach ($users as $index => $user) {
+            $selected = '';
+            if ($saved_author_id == $user->ID){
+                $selected = 'selected="selected"';
+            }
+            ?>
+            <option value='<?php echo $user->ID ?>'<?php echo $selected; ?>><?php echo $user->display_name; ?>  </option>        
+            <?php
+        }
+        ?>
+
+        </select>
+    </div>
+    <?php
+    }
+
 
     //https://www.youtube.com/watch?v=poC7NFAi83I&list=PLT9miexWCpPXs5LDHnQFUTFh0o_ihDy3-&index=3
     //9:15 min
-    public function saveCPTComputerMetabox($post_id, $post)
+    public function saveCPTComputerMetaboxCust($post_id, $post)
     {
         $name = isset($_POST['inputname']) ? $_POST['inputname'] : "";
         $email = isset($_POST['inputemail']) ? $_POST['inputemail'] : "";
@@ -210,6 +245,12 @@ class DanielPlugin
         $columns['the_value_for_name'] = "the_value_for_name";
         $columns['the_value_for_email'] = "the_value_for_email";
         return $columns;
+    }
+
+    public function saveCPTComputerMetaboxAuthor($post_id, $post)
+    {
+        $author_id = isset($_REQUEST['ddauthor']) ? intval($_REQUEST['ddauthor']) : "";
+        update_post_meta($post_id, "author_id_movie", $author_id);
     }
 
 
