@@ -111,7 +111,8 @@ class DanielPlugin
         );
 
         //Name for CPT is Computer
-        register_post_type('Computer', $args);
+        //register_post_type('Computer', $args);
+        register_post_type('computer', $args);
     }
     //Put all desired hooks in one place
     public function addAllHooks()
@@ -134,8 +135,12 @@ class DanielPlugin
         add_action("manage_computer_posts_custom_column", array($this, 'rearrangeCPTComputerCustomColumns'), 10, 2);
         //Enambles filtering on custom columns
         add_filter("manage_edit-computer_sortable_columns", array($this, 'filterCPTComputer'));
-        //How saves the post
+        //Who (user) saves the post
         add_action("save_post", array($this, 'saveCPTComputerMetaboxAuthor') , 10, 2);
+        //In the CPT all - add a filter box (with content - list of author names)
+        add_action("restrict_manage_posts", array($this, 'filterBoxLayoutAuthor'));
+        //Extracts data from url
+        add_filter("parse_query", array($this, 'filterByAuthor'));
 
     }
 
@@ -143,10 +148,12 @@ class DanielPlugin
     public function registerCPTComputersMetaboxes()
     {
         //add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "normal", "high");
-        add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "side", "high");
+        //add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "Computer", "side", "high");
+        add_meta_box("comp-cpt-id", "Customer Detail (Metabox)", array($this, 'drawCPTComputersCustomerMetabox'), "computer", "side", "high");
 
 
-        add_meta_box("comp-cpt-author", "Author (Metabox)", array($this, 'drawCPTComputersAuthorMetabox'), "Computer", "side", "high");
+        //add_meta_box("comp-cpt-author", "Author (Metabox)", array($this, 'drawCPTComputersAuthorMetabox'), "Computer", "side", "high");
+        add_meta_box("comp-cpt-author", "Author (Metabox)", array($this, 'drawCPTComputersAuthorMetabox'), "computer", "side", "high");
     }
     //The function responsible for drawing the layout
     public function drawCPTComputersCustomerMetabox($post)
@@ -250,7 +257,49 @@ class DanielPlugin
     public function saveCPTComputerMetaboxAuthor($post_id, $post)
     {
         $author_id = isset($_REQUEST['ddauthor']) ? intval($_REQUEST['ddauthor']) : "";
+        //Maybe I should have used anoter meta key insteed of author_id_movie
         update_post_meta($post_id, "author_id_movie", $author_id);
+    }
+
+    //This function populates the filter box
+    public function filterBoxLayoutAuthor()
+    {
+        //store the current post type
+        global $typenow;
+        //echo  $typenow;
+
+            
+        //Be mindful with lower and uppecase letter
+        if ($typenow == "computer"){
+            //gets the value from the URL
+            $author_id = isset($_GET['filter_by_author']) ? intval($_GET['filter_by_author']): "";
+
+
+            wp_dropdown_users(array(
+                "show_option_none"  => "Select FOOO authors",           //Default selection
+                "role"              => "author",                         //filter the array based on author  
+                //Theese 2 below code lines add data/parameter in the url after the filter button is clicked  
+                "name"              => "filter_by_author",
+                "id"                => "ddfilterauthor",
+                "selected"          => $author_id               //So it remembers after a page has been filtered
+            ));
+        }
+    }
+
+    public function filterByAuthor($query)
+    {
+        //store the current post type
+        global $typenow;
+        //store current page (in our case edit.php)
+        global $pagenow;
+        
+        //gets the value from the URL
+        $author_id = isset($_GET['filter_by_author']) ? intval($_GET['filter_by_author']): "";
+
+        if ($typenow == "computer" && $pagenow == "edit.php" && !empty($author_id)){
+            $query->query_vars["meta_key"] = "author_id_movie";
+            $query->query_vars["meta_value"] = $author_id;
+        }
     }
 
 
