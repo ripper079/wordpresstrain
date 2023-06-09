@@ -1,0 +1,48 @@
+<?php
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title>Genix Coperation</title> -->
+  <style>
+    /* Add your custom CSS styles here */
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Add your header content here -->
+    <h2>Links</h2>
+    <nav>
+      <ul>
+        <li><a href="link1.html">Link 1</a></li>
+        <li><a href="link2.html">Link 2</a></li>
+        <li><a href="link3.html">Link 3</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Add your main content here -->
+  </main>
+
+  <section>
+    <!-- <h2>Path <?php echo get_template_directory_uri(); ?></h2> -->
+    
+  </section>
+
+  <aside>
+    <!-- Add your aside content here -->
+  </aside>
+
+  <footer>
+    &copy; 2023 Genix Company. All rights reserved.
+  </footer>
+
+  <!-- <script src="js/main.js"></script> -->
+  <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
+</body>
+</html>

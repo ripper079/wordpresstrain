@@ -23,7 +23,8 @@ Text Domain:  wpb-tutorial
 Domain Path:  /languages
 */
 
-
+//Start on page 10
+// Wordpress custom post types tutorial for beginner from scratch
 
 if (! defined('ABSPATH')) {
     echo "You should really not be here";
