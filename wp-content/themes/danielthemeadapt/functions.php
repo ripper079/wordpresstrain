@@ -1,6 +1,3 @@
-<!-- https://www.youtube.com/watch?v=KgbIilYZHNI&list=PLD8nQCAhR3tT3ehpyOpoYeUj3KHDEVK9h&index=7 -->
-<!-- Chapter 7 -->
-
 <?php
 
 //Useful of printing/debugging apps

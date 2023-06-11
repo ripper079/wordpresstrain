@@ -14,10 +14,13 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <title>Genix Coperation</title> -->  
-    <!-- Wordpress way of including scripts -->
+    <!-- Wordpress way of including scripts - Always be before closing head tag-->
     <?php wp_head() ?>
 </head>
-<body>
+<!-- Add wordpress classes- Adds classes to every page(even possible to add custom ones like lasanga:) -->
+<body <?php body_class( 'lasagnafood'); ?>>
+    <!-- Inject code just AFTER body tag - Enables to hook into action wp_body_open -->
+    <?php wp_body_open(); ?>
     <!-- Add your header content here -->
     <header>
         HEADER
