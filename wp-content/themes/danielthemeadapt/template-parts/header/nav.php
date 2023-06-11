@@ -1,6 +1,6 @@
 <?php
 /**
- * Header navigaation template
+ * Header navigation template
  *
  * @ Danielthemeadapt
  */

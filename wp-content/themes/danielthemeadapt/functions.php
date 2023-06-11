@@ -37,3 +37,12 @@ function Danielthemeadapt_enqueue_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'Danielthemeadapt_enqueue_scripts');
+
+
+
+
+function theme_setup(){
+    //Lets wordpress manage the title tag (Settings->General -> SiteTitle+Tagline)
+    add_theme_support( 'title-tag');
+}
+add_action('after_setup_theme', 'theme_setup');
