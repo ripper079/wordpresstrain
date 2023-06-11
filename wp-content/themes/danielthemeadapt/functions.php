@@ -44,5 +44,15 @@ add_action('wp_enqueue_scripts', 'Danielthemeadapt_enqueue_scripts');
 function theme_setup(){
     //Lets wordpress manage the title tag (Settings->General -> SiteTitle+Tagline)
     add_theme_support( 'title-tag');
+    //Enable support for a custom theme logo (Appearance->Customize->Sity Identity->Logo )
+    add_theme_support( 'custom-logo', array(
+        'height'      => 160,
+        'width'       => 160,
+        'flex-height' => true,
+        'flex-width'  => true,
+        'header-text' => array( 'site-title', 'site-description' ),
+    ) );
+
+    
 }
 add_action('after_setup_theme', 'theme_setup');
