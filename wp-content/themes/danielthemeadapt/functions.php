@@ -52,6 +52,11 @@ function theme_setup(){
         'flex-width'  => true,
         'header-text' => array( 'site-title', 'site-description' ),
     ) );
+    //Enable support for a custom background (Appearance->Customize->)
+    add_theme_support( 'custom-background', array(
+        'default-color'          => '#f0f',
+        'default-image'          => '',        
+    ) );
 
     
 }
