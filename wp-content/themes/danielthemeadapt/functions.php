@@ -3,10 +3,10 @@
 <?php
 
 //Useful of printing/debugging apps
-//echo '<pre>';
-//print_r(get_template_directory_uri());
-//print_r(get_stylesheet_uri());
-//wp_die();
+// echo '<pre>';
+// print_r(get_template_directory_uri());
+// print_r(get_stylesheet_uri());
+// wp_die();
 
 function Danielthemeadapt_enqueue_scripts()
 {
