@@ -3,8 +3,8 @@ Tags: widget, button, slider, hero, google maps, image, carousel, lottie, featur
 Requires at least: 4.2
 Tested up to: 6.2
 Requires PHP: 5.6.20
-Stable tag: 1.50.0
-Build time: 2023-05-16T22:03:06+01:00
+Stable tag: 1.50.1
+Build time: 2023-06-13T00:13:50+01:00
 License: GPLv3 or later
 Contributors: gpriday, braam-genis, alexgso
 Donate link: https://siteorigin.com/downloads/premium/
@@ -105,6 +105,15 @@ SiteOrigin Premium includes access to our professional email support service, pe
 The Widgets Bundle global interface is available at Plugins > SiteOrigin Widgets. Widgets can be enabled or disabled as needed. If a widget offers global settings, you can access those via the Settings button next to each applicable widget.
 
 == Changelog ==
+
+= 1.50.1 - 12 June 2023 =
+* Slider: Resolved deprecated warning and improved link alignment.
+* Blog: Updated template defaults to include colors with alpha.
+* Added Tabs Form Field for improved widget organization.
+* Updated Google Fonts with new fonts and weights.
+* Updated Font Awesome from version 6.2.0 to 6.4.0, adding new icons.
+* Added `siteorigin_widgets_load_cache_compatibility` filter for optional cache compatibility control.
+* Various improvements to form fields and code formatting.
 
 = 1.50.0 - 16 May 2023 =
 * Button: Update to only apply Hover Text Color if Use Hover Effects enabled.

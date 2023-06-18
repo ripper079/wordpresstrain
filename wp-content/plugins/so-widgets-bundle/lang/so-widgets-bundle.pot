@@ -272,15 +272,15 @@ msgstr ""
 msgid "Allows you to add any active SiteOrigin Widgets Bundle widgets."
 msgstr ""
 
-#: icons/fontawesome/filter.php:1864
+#: icons/fontawesome/filter.php:1868
 msgid "Regular"
 msgstr ""
 
-#: icons/fontawesome/filter.php:1865, widgets/contact/contact.php:419, widgets/contact/contact.php:541, widgets/contact/contact.php:649, widgets/contact/contact.php:727, widgets/headline/headline.php:217
+#: icons/fontawesome/filter.php:1869, widgets/contact/contact.php:419, widgets/contact/contact.php:541, widgets/contact/contact.php:649, widgets/contact/contact.php:727, widgets/headline/headline.php:217
 msgid "Solid"
 msgstr ""
 
-#: icons/fontawesome/filter.php:1866
+#: icons/fontawesome/filter.php:1870
 msgid "Brands"
 msgstr ""
 
