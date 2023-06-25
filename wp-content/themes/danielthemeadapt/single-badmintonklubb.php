@@ -4,6 +4,8 @@ get_header();
 
 // Get the post ID
 $post_id = get_the_ID();
+//Current post type
+$post_type = get_post_type($post_id);
 
 // Get the post object
 $post = get_post($post_id);
@@ -59,6 +61,7 @@ if ($post) {
 
 ?>
 <a class="btn btn-info" role="button" href="<?php echo esc_url(home_url('/')); ?>" >Go to Start Page</a>
+<a class="btn btn-secondary" role="button" href="<?php echo esc_url(home_url('/')) . ($post_type); ?>" >Go to Archive Page</a>
 <?php
 
 get_footer();

@@ -2,22 +2,17 @@
 
 get_header();
 ?>
-<h1>index.php</h1>
-<main>
-    <!-- Add your main content here -->
-    Content[Element main]
-</main>
 
-<section>
-
+<h1>archive-computer.php</h1>
 
 <?php
-$args = array(
-    'post_type' => 'post', // Specify the post type as 'post'
+
+$argsCPTComputer = array(
+    'post_type' => 'computer',
     'posts_per_page' => -1, // Retrieve all posts
 );
 
-$query = new WP_Query($args); // Create a new query object with the specified arguments
+$query = new WP_Query($argsCPTComputer); // Create a new query object with the specified arguments
 ?>
 
 <div class="container">
@@ -49,12 +44,10 @@ $query = new WP_Query($args); // Create a new query object with the specified ar
 </div> 
 
 
-</section>
 
-<aside>
-    <!-- Add your aside content here -->
-    Content[Aside]
-</aside>
+
+
 
 <?php
+
 get_footer();

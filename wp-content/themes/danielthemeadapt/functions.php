@@ -237,6 +237,11 @@ function scrapePage()
         echo "Failed to open the file.";
     }
 
+    //Remove all created files
+    unlink($filenameRawcontent);
+    unlink($outputFile);
+    unlink($outputFile2);
+
     ?>
         <table class="table table-striped">
   <thead>
